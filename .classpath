@@ -7,5 +7,6 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="fotos"/>
+	<classpathentry kind="src" path="fotoos"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
