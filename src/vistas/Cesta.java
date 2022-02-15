@@ -9,6 +9,8 @@ import javax.swing.SwingConstants;
 import utils.Almacen;
 
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Cesta {
 
@@ -25,7 +27,7 @@ public class Cesta {
 	private JLabel lblTotalProd;
 	private JLabel lblIconoPequenio;
 	private int nProducto;
-	private JButton btnNewButton;
+	private JButton btnAtras;
 	private JButton btnProdAnterior;
 	private JButton btnSiguiente;
 
@@ -110,24 +112,56 @@ public class Cesta {
 		lblIconoPequenio.setBackground(Color.WHITE);
 		lblIconoPequenio.setBounds(0, 0, 102, 57);
 		frame.getContentPane().add(lblIconoPequenio);
-		
-		btnNewButton = new JButton("Atr\u00E1s");
-		btnNewButton.setFont(new Font("Sylfaen", Font.PLAIN, 12));
-		btnNewButton.setBounds(10, 214, 65, 21);
-		frame.getContentPane().add(btnNewButton);
-		
+
+		btnAtras = new JButton("Atr\u00E1s");
+		btnAtras.setFont(new Font("Sylfaen", Font.PLAIN, 12));
+		btnAtras.setBounds(10, 214, 65, 21);
+		frame.getContentPane().add(btnAtras);
+
 		btnProdAnterior = new JButton("Anterior");
 		btnProdAnterior.setFont(new Font("Sylfaen", Font.PLAIN, 11));
 		btnProdAnterior.setBounds(10, 113, 75, 23);
 		frame.getContentPane().add(btnProdAnterior);
 		
+		if (nProducto == 0) {
+			btnProdAnterior.setVisible(false);
+		}
+
 		btnSiguiente = new JButton("Siguiente");
 		btnSiguiente.setFont(new Font("Sylfaen", Font.PLAIN, 11));
 		btnSiguiente.setBounds(453, 110, 75, 23);
 		frame.getContentPane().add(btnSiguiente);
+
+		if (nProducto + 1 == Almacen.productos.size()) {
+			btnSiguiente.setVisible(false);
+		}
 	}
 
 	private void configureListeners() {
+		btnProdAnterior.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				nProducto--;
+				frame.dispose();
+				new Cesta(frame, nProducto);
+			}
+		});
 
+		btnSiguiente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				nProducto++;
+				frame.dispose();
+				new Cesta(frame, nProducto);
+			}
+		});
+
+		btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+
+		btnComprar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 	}
 }
