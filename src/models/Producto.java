@@ -6,7 +6,8 @@ public class Producto {
 	private double precio;
 	private String descripción;
 	private int foto;
-	
+	public int nProductos;
+
 	public Producto(String nombre, double precio, String descripción, int foto) {
 		super();
 		this.nombre = nombre;
@@ -30,5 +31,13 @@ public class Producto {
 	public int getFoto() {
 		return foto;
 	}
-	
+
+	public int getnProductos() {
+		return nProductos;
+	}
+
+	public void setnProductos(int nProductos) {
+		this.nProductos = nProductos;
+	}
+
 }

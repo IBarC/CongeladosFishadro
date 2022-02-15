@@ -124,7 +124,7 @@ public class Login {
 		boolean usuCorrecto = false;
 		do {
 			if (Almacen.usuarios.get(i).nombre.equals(username) && Almacen.usuarios.get(i).contr.equals(password)) {
-				new MenuPrincipal();
+				new MenuPrincipal(frame, 0);
 				frame.setVisible(false); // Se oculta la visibilidad
 				usuCorrecto = true;
 			} else {
