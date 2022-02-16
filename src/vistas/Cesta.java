@@ -11,6 +11,7 @@ import utils.Almacen;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class Cesta {
 
@@ -64,7 +65,7 @@ public class Cesta {
 
 		double total = 0;
 		for (int i = 0; i < Almacen.cesta.size(); i++) {
-			total += Almacen.cesta.get(i).getPrecio();
+			total += Almacen.cesta.get(i).getPrecio()*Almacen.cesta.get(i).nProductos;
 		}
 
 		lblTotal = new JLabel("Total = " + total + " \u20AC");
@@ -75,42 +76,43 @@ public class Cesta {
 
 		lblNombre = new JLabel(Almacen.cesta.get(nProducto).getNombre());
 		lblNombre.setFont(new Font("Sylfaen", Font.BOLD, 18));
-		lblNombre.setBounds(96, 68, 210, 31);
+		lblNombre.setBounds(140, 31, 210, 31);
 		frame.getContentPane().add(lblNombre);
 
 		lblColPrecio = new JLabel("Precio");
 		lblColPrecio.setFont(new Font("Sylfaen", Font.PLAIN, 13));
-		lblColPrecio.setBounds(127, 115, 54, 18);
+		lblColPrecio.setBounds(127, 73, 54, 18);
 		frame.getContentPane().add(lblColPrecio);
 
 		lblColCant = new JLabel("Cantidad");
 		lblColCant.setFont(new Font("Sylfaen", Font.PLAIN, 13));
-		lblColCant.setBounds(217, 115, 54, 18);
+		lblColCant.setBounds(217, 73, 54, 18);
 		frame.getContentPane().add(lblColCant);
 
 		lblColTotalProd = new JLabel("Total producto");
 		lblColTotalProd.setFont(new Font("Sylfaen", Font.PLAIN, 13));
-		lblColTotalProd.setBounds(345, 115, 84, 18);
+		lblColTotalProd.setBounds(345, 73, 113, 18);
 		frame.getContentPane().add(lblColTotalProd);
 
-		lblPrecio = new JLabel("");
+		lblPrecio = new JLabel(Almacen.cesta.get(nProducto).getPrecio()+"");
 		lblPrecio.setFont(new Font("Sylfaen", Font.PLAIN, 15));
-		lblPrecio.setBounds(127, 144, 75, 21);
+		lblPrecio.setBounds(127, 102, 75, 21);
 		frame.getContentPane().add(lblPrecio);
 
-		lblCantidad = new JLabel("");
+		lblCantidad = new JLabel(Almacen.cesta.get(nProducto).nProductos+"");
 		lblCantidad.setFont(new Font("Sylfaen", Font.PLAIN, 15));
-		lblCantidad.setBounds(217, 144, 75, 21);
+		lblCantidad.setBounds(217, 102, 75, 21);
 		frame.getContentPane().add(lblCantidad);
 
-		lblTotalProd = new JLabel("");
+		lblTotalProd = new JLabel((Almacen.cesta.get(nProducto).getPrecio()*Almacen.cesta.get(nProducto).nProductos)+"");
 		lblTotalProd.setFont(new Font("Sylfaen", Font.PLAIN, 15));
-		lblTotalProd.setBounds(345, 144, 75, 21);
+		lblTotalProd.setBounds(345, 102, 75, 21);
 		frame.getContentPane().add(lblTotalProd);
 
 		lblIconoPequenio = new JLabel("");
+		lblIconoPequenio.setIcon(new ImageIcon("fotoos/nombre-y-sobra2CHIQUITO2xd.png"));
 		lblIconoPequenio.setBackground(Color.WHITE);
-		lblIconoPequenio.setBounds(0, 0, 102, 57);
+		lblIconoPequenio.setBounds(10, 5, 102, 57);
 		frame.getContentPane().add(lblIconoPequenio);
 
 		btnAtras = new JButton("Atr\u00E1s");
@@ -120,7 +122,7 @@ public class Cesta {
 
 		btnProdAnterior = new JButton("Anterior");
 		btnProdAnterior.setFont(new Font("Sylfaen", Font.PLAIN, 11));
-		btnProdAnterior.setBounds(10, 113, 75, 23);
+		btnProdAnterior.setBounds(10, 142, 92, 23);
 		frame.getContentPane().add(btnProdAnterior);
 		
 		if (nProducto == 0) {
@@ -129,7 +131,7 @@ public class Cesta {
 
 		btnSiguiente = new JButton("Siguiente");
 		btnSiguiente.setFont(new Font("Sylfaen", Font.PLAIN, 11));
-		btnSiguiente.setBounds(453, 110, 75, 23);
+		btnSiguiente.setBounds(420, 142, 108, 23);
 		frame.getContentPane().add(btnSiguiente);
 
 		if (nProducto + 1 == Almacen.productos.size()) {
@@ -156,6 +158,8 @@ public class Cesta {
 
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				parent.setVisible(true);
 			}
 		});
 
