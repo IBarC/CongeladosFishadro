@@ -6,6 +6,7 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import models.Producto;
 import utils.Almacen;
 
 import java.awt.Color;
@@ -58,14 +59,19 @@ public class Cesta {
 	}
 
 	private void configureUIComponents() {
+		
+		Producto p1=Almacen.cesta.get(nProducto);
+		
 		btnComprar = new JButton("Comprar");
 		btnComprar.setFont(new Font("Sylfaen", Font.BOLD, 18));
 		btnComprar.setBounds(401, 194, 127, 41);
 		frame.getContentPane().add(btnComprar);
 
 		double total = 0;
+		
 		for (int i = 0; i < Almacen.cesta.size(); i++) {
-			total += Almacen.cesta.get(i).getPrecio()*Almacen.cesta.get(i).nProductos;
+			Producto p = Almacen.cesta.get(i);
+			total += p.getPrecio()*p.nProductos;
 		}
 
 		lblTotal = new JLabel("Total = " + total + " \u20AC");
@@ -74,7 +80,7 @@ public class Cesta {
 		lblTotal.setBounds(190, 199, 177, 31);
 		frame.getContentPane().add(lblTotal);
 
-		lblNombre = new JLabel(Almacen.cesta.get(nProducto).getNombre());
+		lblNombre = new JLabel(p1.getNombre());
 		lblNombre.setFont(new Font("Sylfaen", Font.BOLD, 18));
 		lblNombre.setBounds(140, 31, 210, 31);
 		frame.getContentPane().add(lblNombre);
@@ -94,17 +100,17 @@ public class Cesta {
 		lblColTotalProd.setBounds(345, 73, 113, 18);
 		frame.getContentPane().add(lblColTotalProd);
 
-		lblPrecio = new JLabel(Almacen.cesta.get(nProducto).getPrecio()+"");
+		lblPrecio = new JLabel(p1.getPrecio()+"");
 		lblPrecio.setFont(new Font("Sylfaen", Font.PLAIN, 15));
 		lblPrecio.setBounds(127, 102, 75, 21);
 		frame.getContentPane().add(lblPrecio);
 
-		lblCantidad = new JLabel(Almacen.cesta.get(nProducto).nProductos+"");
+		lblCantidad = new JLabel(p1.nProductos+"");
 		lblCantidad.setFont(new Font("Sylfaen", Font.PLAIN, 15));
 		lblCantidad.setBounds(217, 102, 75, 21);
 		frame.getContentPane().add(lblCantidad);
 
-		lblTotalProd = new JLabel((Almacen.cesta.get(nProducto).getPrecio()*Almacen.cesta.get(nProducto).nProductos)+"");
+		lblTotalProd = new JLabel((p1.getPrecio()*p1.nProductos)+"");
 		lblTotalProd.setFont(new Font("Sylfaen", Font.PLAIN, 15));
 		lblTotalProd.setBounds(345, 102, 75, 21);
 		frame.getContentPane().add(lblTotalProd);
@@ -158,8 +164,8 @@ public class Cesta {
 
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				new MenuPrincipal(MenuPrincipal.parent, 0);
 				frame.dispose();
-				parent.setVisible(true);
 			}
 		});
 
