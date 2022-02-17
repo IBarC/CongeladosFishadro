@@ -74,24 +74,24 @@ public class MenuPrincipal {
 
 		lblNombre = new JLabel(Almacen.productos.get(nProducto).getNombre());
 		lblNombre.setFont(new Font("Sylfaen", Font.BOLD, 17));
-		lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNombre.setBounds(183, 163, 182, 23);
+		lblNombre.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNombre.setBounds(146, 209, 182, 23);
 		frMenuPrincipal.getContentPane().add(lblNombre);
 
 		lblDescripcion = new JLabel(Almacen.productos.get(nProducto).getDescripción());
 		lblDescripcion.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDescripcion.setFont(new Font("Sylfaen", Font.BOLD, 14));
-		lblDescripcion.setBounds(23, 197, 387, 23);
+		lblDescripcion.setBounds(23, 256, 482, 23);
 		frMenuPrincipal.getContentPane().add(lblDescripcion);
 
 		lblPrecio = new JLabel("Precio: " + Almacen.productos.get(nProducto).getPrecio() + " \u20AC");
 		lblPrecio.setHorizontalAlignment(SwingConstants.LEFT);
-		lblPrecio.setFont(new Font("Sylfaen", Font.BOLD, 14));
-		lblPrecio.setBounds(23, 231, 387, 23);
+		lblPrecio.setFont(new Font("Sylfaen", Font.BOLD, 16));
+		lblPrecio.setBounds(350, 208, 170, 27);
 		frMenuPrincipal.getContentPane().add(lblPrecio);
 
 		btnAniadirACesta = new JButton("A\u00F1adir a la cesta");
-		btnAniadirACesta.setBounds(347, 265, 139, 23);
+		btnAniadirACesta.setBounds(381, 290, 139, 23);
 		frMenuPrincipal.getContentPane().add(btnAniadirACesta);
 
 		btnAtras = new JButton("Atr\u00E1s");
@@ -101,6 +101,12 @@ public class MenuPrincipal {
 		btnSiguiente = new JButton("Siguiente");
 		btnSiguiente.setBounds(462, 145, 89, 23);
 		frMenuPrincipal.getContentPane().add(btnSiguiente);
+		
+		JLabel lblFoto = new JLabel("");
+		lblFoto.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFoto.setIcon(new ImageIcon("fotoos/"+Almacen.productos.get(nProducto).getFoto()+".jpg"));
+		lblFoto.setBounds(146, 11, 259, 186);
+		frMenuPrincipal.getContentPane().add(lblFoto);
 	}
 
 	private void configureListeners() {
@@ -155,9 +161,10 @@ public class MenuPrincipal {
 			public void actionPerformed(ActionEvent e) {
 				Producto p = Almacen.productos.get(nProducto);
 				boolean prodEncontrado=false;
+				
 				if (Almacen.cesta.isEmpty()) {
 					p.setnProductos(1);
-					Almacen.cesta.add(Almacen.productos.get(nProducto));
+					Almacen.cesta.add(p);
 				} else {
 					int i = 0;
 					do {
@@ -165,10 +172,10 @@ public class MenuPrincipal {
 							prodEncontrado=true;
 						}
 						i++;
-					} while (prodEncontrado && i < Almacen.cesta.size());
+					} while (!prodEncontrado && i < Almacen.cesta.size());
 					
 					if (prodEncontrado) {
-						p.nProductos++;
+						p.setnProductos(p.getnProductos()+1);
 					} else {
 						p.setnProductos(1);
 						Almacen.cesta.add(p);

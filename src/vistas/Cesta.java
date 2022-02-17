@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import models.Producto;
@@ -32,6 +33,7 @@ public class Cesta {
 	private JButton btnAtras;
 	private JButton btnProdAnterior;
 	private JButton btnSiguiente;
+	private double total;
 
 	/**
 	 * Create the application.
@@ -49,6 +51,7 @@ public class Cesta {
 	private void initialize() {
 
 		frame = new JFrame();
+		frame.getContentPane().setBackground(new Color(238, 245, 219));
 		frame.setBounds(100, 100, 554, 285);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -59,19 +62,20 @@ public class Cesta {
 	}
 
 	private void configureUIComponents() {
-		
-		Producto p1=Almacen.cesta.get(nProducto);
-		
+
+		Producto p1 = Almacen.cesta.get(nProducto);
+
 		btnComprar = new JButton("Comprar");
+		btnComprar.setBackground(new Color(152, 147, 218));
 		btnComprar.setFont(new Font("Sylfaen", Font.BOLD, 18));
 		btnComprar.setBounds(401, 194, 127, 41);
 		frame.getContentPane().add(btnComprar);
 
-		double total = 0;
-		
+		total = 0;
+
 		for (int i = 0; i < Almacen.cesta.size(); i++) {
 			Producto p = Almacen.cesta.get(i);
-			total += p.getPrecio()*p.nProductos;
+			total += p.getPrecio() * p.getnProductos();
 		}
 
 		lblTotal = new JLabel("Total = " + total + " \u20AC");
@@ -100,17 +104,22 @@ public class Cesta {
 		lblColTotalProd.setBounds(345, 73, 113, 18);
 		frame.getContentPane().add(lblColTotalProd);
 
-		lblPrecio = new JLabel(p1.getPrecio()+"");
+		lblPrecio = new JLabel(p1.getPrecio() + "");
 		lblPrecio.setFont(new Font("Sylfaen", Font.PLAIN, 15));
 		lblPrecio.setBounds(127, 102, 75, 21);
 		frame.getContentPane().add(lblPrecio);
 
-		lblCantidad = new JLabel(p1.nProductos+"");
+		int NumeroProductos = p1.getnProductos();
+
+		lblCantidad = new JLabel(NumeroProductos + "");
 		lblCantidad.setFont(new Font("Sylfaen", Font.PLAIN, 15));
 		lblCantidad.setBounds(217, 102, 75, 21);
 		frame.getContentPane().add(lblCantidad);
 
-		lblTotalProd = new JLabel((p1.getPrecio()*p1.nProductos)+"");
+		//Para que salgan poquitos decimales lo convierto a float
+		float totalProducto = (float)(p1.getPrecio()) * p1.getnProductos();
+
+		lblTotalProd = new JLabel(totalProducto + "");
 		lblTotalProd.setFont(new Font("Sylfaen", Font.PLAIN, 15));
 		lblTotalProd.setBounds(345, 102, 75, 21);
 		frame.getContentPane().add(lblTotalProd);
@@ -130,7 +139,7 @@ public class Cesta {
 		btnProdAnterior.setFont(new Font("Sylfaen", Font.PLAIN, 11));
 		btnProdAnterior.setBounds(10, 142, 92, 23);
 		frame.getContentPane().add(btnProdAnterior);
-		
+
 		if (nProducto == 0) {
 			btnProdAnterior.setVisible(false);
 		}
@@ -140,7 +149,7 @@ public class Cesta {
 		btnSiguiente.setBounds(420, 142, 108, 23);
 		frame.getContentPane().add(btnSiguiente);
 
-		if (nProducto + 1 == Almacen.productos.size()) {
+		if (nProducto + 1 == Almacen.cesta.size()) {
 			btnSiguiente.setVisible(false);
 		}
 	}
@@ -171,6 +180,13 @@ public class Cesta {
 
 		btnComprar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (JOptionPane.showConfirmDialog(btnComprar, "Su total es: " + total
+						+ " €.\n¿Está seguro de que quiere realizar la compra?") == JOptionPane.OK_OPTION) {
+					JOptionPane.showMessageDialog(btnComprar, "Gracias por comprar en Congelados Fishadro :)");
+					frame.dispose();
+					Almacen.cesta.clear();
+					new MenuPrincipal(MenuPrincipal.parent, 0);
+				}
 			}
 		});
 	}

@@ -6,7 +6,7 @@ public class Producto {
 	private double precio;
 	private String descripción;
 	private int foto;
-	public int nProductos;
+	private int nProductos;
 
 	public Producto(String nombre, double precio, String descripción, int foto) {
 		super();
