@@ -5,6 +5,12 @@ import models.Usuario;
 import utils.Almacen;
 import vistas.Login;
 
+/**
+ * Clase que inicia el programa de Congelados Fishadro
+ * 
+ * @author alumno
+ *
+ */
 public class MainApp {
 
 	public static void main(String[] args) {

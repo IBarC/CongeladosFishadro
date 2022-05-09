@@ -15,6 +15,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 
+/**
+ * Clase que contiene la vista de Cesta y su lógica
+ * 
+ * @author alumno
+ *
+ */
 public class Cesta {
 
 	private JFrame frame;
@@ -36,7 +42,10 @@ public class Cesta {
 	private double total;
 
 	/**
-	 * Create the application.
+	 * Constructor de la clase Cesta
+	 * 
+	 * @param parent    Frame padre del que proviene la vista
+	 * @param nProducto Número del producto que se visualiza
 	 */
 	public Cesta(JFrame parent, int nProducto) {
 		this.parent = parent;
@@ -46,7 +55,7 @@ public class Cesta {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Inicializa el contenido de la clase Cesta
 	 */
 	private void initialize() {
 
@@ -61,6 +70,9 @@ public class Cesta {
 		configureListeners();
 	}
 
+	/**
+	 * Configuración de la parte visual de la clase Cesta
+	 */
 	private void configureUIComponents() {
 
 		Producto p1 = Almacen.cesta.get(nProducto);
@@ -116,8 +128,8 @@ public class Cesta {
 		lblCantidad.setBounds(217, 102, 75, 21);
 		frame.getContentPane().add(lblCantidad);
 
-		//Para que salgan poquitos decimales lo convierto a float
-		float totalProducto = (float)(p1.getPrecio()) * p1.getnProductos();
+		// Para que salgan poquitos decimales lo convierto a float
+		float totalProducto = (float) (p1.getPrecio()) * p1.getnProductos();
 
 		lblTotalProd = new JLabel(totalProducto + "");
 		lblTotalProd.setFont(new Font("Sylfaen", Font.PLAIN, 15));
@@ -154,6 +166,9 @@ public class Cesta {
 		}
 	}
 
+	/**
+	 * Configuración de los botones de la clase Cesta
+	 */
 	private void configureListeners() {
 		btnProdAnterior.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

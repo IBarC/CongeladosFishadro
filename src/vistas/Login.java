@@ -1,6 +1,7 @@
 package vistas;
 
 import javax.swing.JFrame;
+
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -118,7 +119,7 @@ public class Login {
 		});
 	}
 	
-	private void comprobarLogin(String username, String password) {
+	public boolean comprobarLogin(String username, String password) {
 
 		int i = 0;
 		boolean usuCorrecto = false;
@@ -135,5 +136,6 @@ public class Login {
 		if (!usuCorrecto) {
 			JOptionPane.showMessageDialog(btnIniciarS, "Login incorrecto");
 		}
+		return usuCorrecto;
 	}
 }

@@ -1,5 +1,11 @@
 package models;
 
+/**
+ * Clase que declara un objeto de tipo Producto
+ * 
+ * @author alumno
+ *
+ */
 public class Producto {
 
 	private String nombre;
@@ -8,6 +14,14 @@ public class Producto {
 	private int foto;
 	private int nProductos;
 
+	/**
+	 * Constructor de la clase Producto
+	 * 
+	 * @param nombre      Nombre del producto
+	 * @param precio      Precio del producto
+	 * @param descripción Breve descripcion del producto
+	 * @param foto        Imagen del producto
+	 */
 	public Producto(String nombre, double precio, String descripción, int foto) {
 		super();
 		this.nombre = nombre;
