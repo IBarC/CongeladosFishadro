@@ -17,6 +17,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 
+/**
+ * Clase que contiene la vista de LogIn y su lógica
+ * 
+ * @author Irene
+ *
+ */
 public class Login {
 
 	private JFrame frame;
@@ -31,7 +37,7 @@ public class Login {
 	private JPasswordField txtContrasenia;
 
 	/**
-	 * Create the application.
+	 * Constructor de la clase LogIn
 	 */
 	public Login() {
 		initialize();
@@ -39,7 +45,7 @@ public class Login {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Inicializa el contenido de la clase LogIn
 	 */
 	private void initialize() {
 		frame = new JFrame();
@@ -52,6 +58,9 @@ public class Login {
 		configureListeners();
 	}
 
+	/**
+	 * COnfiguración de la parte visual de la clase LogIn
+	 */
 	private void configureUIComponents() {
 		lblIniciarSesion = new JLabel("Iniciar sesi\u00F3n");
 		lblIniciarSesion.setFont(new Font("Sylfaen", Font.BOLD, 21));
@@ -95,18 +104,21 @@ public class Login {
 		btnCrearCuenta = new JButton("Crear cuenta");
 		btnCrearCuenta.setBounds(24, 244, 109, 23);
 		frame.getContentPane().add(btnCrearCuenta);
-		
+
 		txtContrasenia = new JPasswordField();
 		txtContrasenia.setBounds(186, 287, 173, 27);
 		frame.getContentPane().add(txtContrasenia);
 
 	}
 
+	/**
+	 * Configuración de los botones de la clase LogIn
+	 */
 	private void configureListeners() {
 		btnIniciarS.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String usuario = txtUsuario.getText();
-				String contrasenia = new String (txtContrasenia.getPassword());
+				String contrasenia = new String(txtContrasenia.getPassword());
 				comprobarLogin(usuario, contrasenia);
 			}
 		});
@@ -118,7 +130,15 @@ public class Login {
 			}
 		});
 	}
-	
+
+	/**
+	 * Método para comprobar si el usuario introducido se encuentra en el almacen.
+	 * Si está lleva a la clase MenuPrincipal
+	 * 
+	 * @param username Nombre del usuario
+	 * @param password Contraseña introducida
+	 * @return true si el login se realiza correctamente
+	 */
 	public boolean comprobarLogin(String username, String password) {
 
 		int i = 0;

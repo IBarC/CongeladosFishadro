@@ -3,7 +3,7 @@ package models;
 /**
  * Clase que declara un objeto de tipo Usuario
  * 
- * @author alumno
+ * @author Irene
  *
  */
 public class Usuario {

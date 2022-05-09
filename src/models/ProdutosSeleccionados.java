@@ -4,7 +4,7 @@ package models;
  * Clase de ayuda para añadir los productos seleccionados por el cliente
  * Extiende de la clase Producto
  * 
- * @author alumno
+ * @author Irene
  *
  * @see Producto
  */

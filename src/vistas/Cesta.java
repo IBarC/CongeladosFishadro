@@ -18,7 +18,7 @@ import javax.swing.ImageIcon;
 /**
  * Clase que contiene la vista de Cesta y su lógica
  * 
- * @author alumno
+ * @author Irene
  *
  */
 public class Cesta {
@@ -44,7 +44,7 @@ public class Cesta {
 	/**
 	 * Constructor de la clase Cesta
 	 * 
-	 * @param parent    Frame padre del que proviene la vista
+	 * @param parent    Frame padre indicando de qué vista proviene
 	 * @param nProducto Número del producto que se visualiza
 	 */
 	public Cesta(JFrame parent, int nProducto) {

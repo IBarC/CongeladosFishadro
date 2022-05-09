@@ -16,6 +16,12 @@ import utils.Almacen;
 
 import java.awt.Font;
 
+/**
+ * Clase que contiene la vista del menú principal y su lógica
+ * 
+ * @author Irene
+ *
+ */
 public class MenuPrincipal {
 
 	private JFrame frMenuPrincipal;
@@ -32,7 +38,10 @@ public class MenuPrincipal {
 	private JButton btnSiguiente;
 
 	/**
-	 * Create the application.
+	 * Constructor de la clase MenuPrincipal
+	 * 
+	 * @param parent    Frame padre indicando de qué vista proviene
+	 * @param nProducto Número del producto que se visualiza
 	 */
 	public MenuPrincipal(JFrame parent, int nProducto) {
 		this.nProducto = nProducto;
@@ -42,7 +51,7 @@ public class MenuPrincipal {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Inicializa el contenido de la clase MenuPrincipal
 	 */
 	private void initialize() {
 		frMenuPrincipal = new JFrame();
@@ -55,6 +64,9 @@ public class MenuPrincipal {
 		configureListeners();
 	}
 
+	/**
+	 * Configuración de la parte visual de la clase MenuPrincipal
+	 */
 	private void configureUIComponents() {
 		btnCerrarSesion = new JButton("Cerrar Sesi\u00F3n");
 		btnCerrarSesion.setBounds(10, 310, 124, 23);
@@ -101,14 +113,17 @@ public class MenuPrincipal {
 		btnSiguiente = new JButton("Siguiente");
 		btnSiguiente.setBounds(462, 145, 89, 23);
 		frMenuPrincipal.getContentPane().add(btnSiguiente);
-		
+
 		JLabel lblFoto = new JLabel("");
 		lblFoto.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFoto.setIcon(new ImageIcon("fotoos/"+Almacen.productos.get(nProducto).getFoto()+".jpg"));
+		lblFoto.setIcon(new ImageIcon("fotoos/" + Almacen.productos.get(nProducto).getFoto() + ".jpg"));
 		lblFoto.setBounds(146, 11, 259, 186);
 		frMenuPrincipal.getContentPane().add(lblFoto);
 	}
 
+	/**
+	 * Configuración de los botones de la clase MenuPrincipal
+	 */
 	private void configureListeners() {
 		btnCerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -119,13 +134,13 @@ public class MenuPrincipal {
 
 		btnCesta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(Almacen.cesta.isEmpty()) {
+				if (Almacen.cesta.isEmpty()) {
 					JOptionPane.showMessageDialog(btnCesta, "La cesta está vacía");
 				} else {
 					frMenuPrincipal.setVisible(false);
 					new Cesta(frMenuPrincipal, 0);
 				}
-				
+
 			}
 		});
 
@@ -160,28 +175,28 @@ public class MenuPrincipal {
 		btnAniadirACesta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Producto p = Almacen.productos.get(nProducto);
-				boolean prodEncontrado=false;
-				
+				boolean prodEncontrado = false;
+
 				if (Almacen.cesta.isEmpty()) {
 					p.setnProductos(1);
 					Almacen.cesta.add(p);
 				} else {
 					int i = 0;
 					do {
-						if(Almacen.cesta.get(i).equals(p)) {
-							prodEncontrado=true;
+						if (Almacen.cesta.get(i).equals(p)) {
+							prodEncontrado = true;
 						}
 						i++;
 					} while (!prodEncontrado && i < Almacen.cesta.size());
-					
+
 					if (prodEncontrado) {
-						p.setnProductos(p.getnProductos()+1);
+						p.setnProductos(p.getnProductos() + 1);
 					} else {
 						p.setnProductos(1);
 						Almacen.cesta.add(p);
 					}
 				}
-				
+
 				JOptionPane.showMessageDialog(btnAniadirACesta, "El producto se ha añadido a la cesta.");
 			}
 		});

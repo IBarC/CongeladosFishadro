@@ -8,7 +8,7 @@ import models.Usuario;
 /**
  * Clase para almacenar datos de usuarios, productos y productos seleccionados
  * 
- * @author alumno
+ * @author Irene
  * 
  * @see Usuario
  * @see Producto

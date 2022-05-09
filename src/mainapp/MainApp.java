@@ -8,7 +8,7 @@ import vistas.Login;
 /**
  * Clase que inicia el programa de Congelados Fishadro
  * 
- * @author alumno
+ * @author Irene
  *
  */
 public class MainApp {
